@@ -12,7 +12,7 @@ class Searchbar extends Component {
   onFormSubmit = event => {
       event.preventDefault();
       const searchQuery = event.target.query.value;
-      const { onSubmit } = this.props;
+      const {onSubmit } = this.props;
       onSubmit(searchQuery);
       if (!searchQuery) {
           alert('Please enter your search query')
