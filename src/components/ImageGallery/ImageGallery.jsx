@@ -12,7 +12,7 @@ class ImageGallery extends Component {
     }
     return (
       <div>
-        <ul className={css.gallery}>
+        <ul className={css.ImageGallery}>
           {images.map(({ id, webformatURL, tags, largeImageURL }) => (
             <ImageGalleryItem
               key={id}

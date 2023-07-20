@@ -4,42 +4,42 @@ import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
   state = {
-    value: '',
+    imageName: '',
   };
 
   handleNameChange = e => {
-    this.setState({ value: e.currentTarget.value });
+    this.setState({ imageName: e.currentTarget.value });
   };
   onFormSubmit = e => {
     e.preventDefault();
 
-    if (this.state.value.trim() === '') {
+    if (this.state.imageName.trim() === '') {
       alert('Please enter your search query');
       return;
     }
-
-    this.props.onSubmit(this.state.value);
+    console.log(this.state.imageName);
+    this.props.onSubmit(this.state.imageName);
     this.resetForm();
   };
 
   resetForm = () => {
-    this.setState({ value: '' });
+    this.setState({ imageName: '' });
   };
   render() {
     return (
-      <header className={css.searchbar}>
-        <form className={css.form} onSubmit={this.onFormSubmit}>
-          <button type="submit" className="button">
-            <span className={css.buttonLabel}>Search</span>
+      <header className={css.Searchbar}>
+        <form className={css.SearchForm} onSubmit={this.onFormSubmit}>
+          <button type="submit" className={css.SearchFormButton}>
+            <span className={css.SearchFormButtonLabel}>Search</span>
           </button>
 
           <input
-            className={css.input}
+            className={css.SearchFormInput}
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.value}
+            value={this.state.imageName}
             onChange={this.handleNameChange}
           />
         </form>

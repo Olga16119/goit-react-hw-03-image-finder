@@ -14,9 +14,13 @@ const ImageGalleryItem = ({
       onClick={() => {
         onClick({ largeImageURL, tags });
       }}
-      className={css.galleryItem}
+      className={css.ImageGalleryItem}
     >
-      <img className={css.imageGalleryItem} src={webformatURL} alt={tags} />
+      <img
+        className={css.ImageGalleryItemImage}
+        src={webformatURL}
+        alt={tags}
+      />
     </li>
   );
 };

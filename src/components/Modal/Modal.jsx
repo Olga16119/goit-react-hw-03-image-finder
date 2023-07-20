@@ -22,13 +22,8 @@ export default class Modal extends Component {
     const { data } = this.props;
     const { largeImageURL, tags } = data || {};
     return (
-      <div onClick={this.onClose} className={css.backdrop}>
-        <div className={css.modal}>
-          <button
-            className={css.buttonClose}
-            type="button"
-            onClick={this.onClose}
-          ></button>
+      <div onClick={this.onClose} className={css.Overlay}>
+        <div className={css.Modal}>
           <img src={largeImageURL} alt={tags} />
         </div>
       </div>
@@ -36,7 +31,9 @@ export default class Modal extends Component {
   }
 }
 Modal.propTypes = {
+  data: PropTypes.shape({
+    largeImageURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  }),
   onClose: PropTypes.func.isRequired,
-  largeImageURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
 };
