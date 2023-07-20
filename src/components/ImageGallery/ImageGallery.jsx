@@ -1,35 +1,37 @@
-import PropTypes from 'prop-types'
-import css from './ImageGallery.module.css'
-import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem'
+import PropTypes from 'prop-types';
+import css from './ImageGallery.module.css';
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import { Component } from 'react';
 
+class ImageGallery extends Component {
+  render() {
+    const { images, onClick } = this.props;
 
-function ImageGallery({images}) {
-   return (<ul className={css.gallery}>
-       {images.map(({ id, webformatURL, largeImageURL }) => {
-           return (
-               <ImageGalleryItem
+    if (!images || images.length === 0) {
+      return <p>Start searching for images</p>;
+    }
+    return (
+      <div>
+        <ul className={css.gallery}>
+          {images.map(({ id, webformatURL, tags, largeImageURL }) => (
+            <ImageGalleryItem
               key={id}
-              url={webformatURL}
+              id={id}
+              webformatURL={webformatURL}
               largeUrl={largeImageURL}
-
+              tags={tags}
+              onClick={onClick}
             />
-           )
-
-
-       })}
-        </ul>)
-
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
-    
+
 ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      webformatURL: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  images: PropTypes.array.isRequired,
+  onclick: PropTypes.func.isRequired,
 };
 
-
-export default ImageGallery
+export default ImageGallery;

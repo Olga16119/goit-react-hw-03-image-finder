@@ -2,34 +2,34 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
-export class Modal extends Component {
+export default class Modal extends Component {
+  state = {
+    data: this.props.data,
+  };
   componentDidMount() {
-    window.addEventListener('keydown', this.onCloseEscape);
+    window.addEventListener('keydown', this.onClose);
   }
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.onCloseEscape);
+    window.removeEventListener('keydown', this.onClose);
   }
-  onCloseEscape = e => {
-    if (e.code === 'Escape') {
+  onClose = e => {
+    if (e.code === 'Escape' || e.target === e.currentTarget) {
       this.props.onClose();
     }
   };
 
-  onCloseBackdrop = e => {
-    if (e.target === e.currentTarget) {
-      this.props.onClose();
-    }
-  };
   render() {
+    const { data } = this.props;
+    const { largeImageURL, tags } = data || {};
     return (
-      <div onClick={this.onCloseBackdrop} className={css.backdrop}>
+      <div onClick={this.onClose} className={css.backdrop}>
         <div className={css.modal}>
           <button
             className={css.buttonClose}
             type="button"
-            onClick={this.onCloseBackdrop}
+            onClick={this.onClose}
           ></button>
-          <img src={this.props.src} alt={this.props.alt} />
+          <img src={largeImageURL} alt={tags} />
         </div>
       </div>
     );
@@ -37,6 +37,6 @@ export class Modal extends Component {
 }
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
 };
