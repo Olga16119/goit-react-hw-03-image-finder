@@ -38,6 +38,7 @@ export class App extends Component {
         images: [...images, ...hits],
         isloading: false,
       }));
+      
     }
   }
 
@@ -57,19 +58,11 @@ export class App extends Component {
   searchHandler = async imageName => {
     this.setState({ imageName, images: [], loadMore: true, page: 1 });
 
-    const { hits } = await searchImages(imageName, 1);
-
-    this.setState({
-      images: hits,
-      isloading: false,
-      page: 1,
-      loadMore: true,
-      imageName,
-    });
   };
 
   render() {
     const { images, isloading, showModal, modalValue, loadMore } = this.state;
+    // console.log(images)
 
     return (
       <>

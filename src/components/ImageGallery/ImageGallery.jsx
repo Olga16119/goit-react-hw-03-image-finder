@@ -6,7 +6,7 @@ import { Component } from 'react';
 class ImageGallery extends Component {
   render() {
     const { images, onClick } = this.props;
-
+console.log(images)
     if (!images || images.length === 0) {
       return <p>Start searching for images</p>;
     }
