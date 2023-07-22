@@ -5,7 +5,7 @@ async function searchImages(name, page) {
     const response = await fetch(
       `https://pixabay.com/api/?q=${name}&page=${page}&key=${APIKEY}&image_type=photo&orientation=horizontal&per_page=12`
     );
-    const data = await response.json;
+    const data = await response.json();
     console.log(data);
     return data;
   } catch (error) {

@@ -30,7 +30,7 @@ class Searchbar extends Component {
       <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={this.onFormSubmit}>
           <button type="submit" className={css.SearchFormButton}>
-            <span className={css.SearchFormButtonLabel}>Search</span>
+            <span >Search</span>
           </button>
 
           <input

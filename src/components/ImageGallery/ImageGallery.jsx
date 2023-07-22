@@ -6,7 +6,6 @@ import { Component } from 'react';
 class ImageGallery extends Component {
   render() {
     const { images, onClick } = this.props;
-console.log(images)
     if (!images || images.length === 0) {
       return <p>Start searching for images</p>;
     }
@@ -18,7 +17,7 @@ console.log(images)
               key={id}
               id={id}
               webformatURL={webformatURL}
-              largeUrl={largeImageURL}
+              largeImageURL={largeImageURL}
               tags={tags}
               onClick={onClick}
             />
@@ -31,7 +30,7 @@ console.log(images)
 
 ImageGallery.propTypes = {
   images: PropTypes.array.isRequired,
-  onclick: PropTypes.func.isRequired,
+  onclick: PropTypes.func
 };
 
 export default ImageGallery;

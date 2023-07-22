@@ -27,15 +27,27 @@ export class App extends Component {
     ) {
       this.setState({ isloading: true });
 
-      const { hits, total } = await searchImages(
+      const responce = await searchImages(
         this.state.imageName,
         this.state.page
-      );
-      if (!total) {
+      )
+      const totalPage=Math.ceil(responce.totalHits/12)
+        console.log(responce);
+      if (!responce.hits.length) {
+        this.setState({ loadMore: false })
         return alert(`Sorry, nothing was found for your request`);
+       
       }
+      if (this.state.page === 1 && responce.hits.length) {
+             console.log(` ${responce.totalHits} image(s) have been found`);
+      }
+      if (this.state.page === totalPage) {
+        console.log('All images for this request are already available');
+        this.setState({loadMore: false})
+      }
+
       this.setState(({ images }) => ({
-        images: [...images, ...hits],
+        images: [...images, ...responce.hits],
         isloading: false,
       }));
       
@@ -62,7 +74,6 @@ export class App extends Component {
 
   render() {
     const { images, isloading, showModal, modalValue, loadMore } = this.state;
-    // console.log(images)
 
     return (
       <>
