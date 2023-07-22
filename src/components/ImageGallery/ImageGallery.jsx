@@ -6,16 +6,13 @@ import { Component } from 'react';
 class ImageGallery extends Component {
   render() {
     const { images, onClick } = this.props;
-    if (!images || images.length === 0) {
-      return <p>Start searching for images</p>;
-    }
+  
     return (
       <div>
         <ul className={css.ImageGallery}>
-          {images.map(({ id, webformatURL, tags, largeImageURL }) => (
+          {images.map(({  id, webformatURL, tags, largeImageURL }) => (
             <ImageGalleryItem
               key={id}
-              id={id}
               webformatURL={webformatURL}
               largeImageURL={largeImageURL}
               tags={tags}
@@ -30,7 +27,7 @@ class ImageGallery extends Component {
 
 ImageGallery.propTypes = {
   images: PropTypes.array.isRequired,
-  onclick: PropTypes.func
+  onClick: PropTypes.func.isRequired
 };
 
 export default ImageGallery;

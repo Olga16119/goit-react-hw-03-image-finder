@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 
 const ImageGalleryItem = ({
-  id,
   webformatURL,
   largeImageURL,
   tags,
@@ -10,7 +9,6 @@ const ImageGalleryItem = ({
 }) => {
   return (
     <li
-      key={id}
       onClick={() => {
         onClick({ largeImageURL, tags });
       }}
@@ -26,7 +24,6 @@ const ImageGalleryItem = ({
 };
 
 ImageGalleryItem.propTypes = {
-  id: PropTypes.number.isRequired,
   webformatURL: PropTypes.string.isRequired,
   tags: PropTypes.string,
   largeImageURL: PropTypes.string.isRequired,

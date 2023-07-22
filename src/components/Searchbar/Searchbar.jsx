@@ -8,8 +8,9 @@ class Searchbar extends Component {
   };
 
   handleNameChange = e => {
-    this.setState({ imageName: e.currentTarget.value });
-  };
+      this.setState({ imageName: e.currentTarget.value });
+    };
+  
   onFormSubmit = e => {
     e.preventDefault();
 
@@ -18,13 +19,12 @@ class Searchbar extends Component {
       return;
     }
     console.log(this.state.imageName);
-    this.props.onSubmit(this.state.imageName);
-    this.resetForm();
+    
+      this.props.onSubmit(this.state.imageName);
+  
+    
   };
 
-  resetForm = () => {
-    this.setState({ imageName: '' });
-  };
   render() {
     return (
       <header className={css.Searchbar}>

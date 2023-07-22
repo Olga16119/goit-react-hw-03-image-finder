@@ -30,27 +30,26 @@ export class App extends Component {
       const responce = await searchImages(
         this.state.imageName,
         this.state.page
-      )
-      const totalPage=Math.ceil(responce.totalHits/12)
-        console.log(responce);
+      );
+      const totalPage = Math.ceil(responce.totalHits / 12);
+      console.log(responce);
+  
       if (!responce.hits.length) {
-        this.setState({ loadMore: false })
+        this.setState({ loadMore: false });
         return alert(`Sorry, nothing was found for your request`);
-       
       }
       if (this.state.page === 1 && responce.hits.length) {
-             console.log(` ${responce.totalHits} image(s) have been found`);
+        console.log(` ${responce.totalHits} image(s) have been found`);
       }
       if (this.state.page === totalPage) {
         console.log('All images for this request are already available');
-        this.setState({loadMore: false})
+        this.setState({ loadMore: false });
       }
 
       this.setState(({ images }) => ({
         images: [...images, ...responce.hits],
         isloading: false,
       }));
-      
     }
   }
 
@@ -69,7 +68,6 @@ export class App extends Component {
 
   searchHandler = async imageName => {
     this.setState({ imageName, images: [], loadMore: true, page: 1 });
-
   };
 
   render() {
@@ -85,15 +83,20 @@ export class App extends Component {
               onClose={this.toggleModal}
             />
           )}
-          {isloading && <Loader />}
-
           <Searchbar onSubmit={this.searchHandler} />
-          <ImageGallery
-            images={images}
-            isloading={isloading}
-            onClick={this.toggleModal}
-            loadMore={this.onClickLoadMore}
-          />
+
+          {!images || images.length === 0 ? (
+            <p>Start searching for images</p>
+          ) : (
+            <ImageGallery
+              images={images}
+              isloading={isloading}
+              onClick={this.toggleModal}
+              loadMore={this.onClickLoadMore}
+            />
+          )}
+
+          {isloading && <Loader />}
           {loadMore && <Button onClick={this.onClickLoadMore} />}
         </div>
       </>
