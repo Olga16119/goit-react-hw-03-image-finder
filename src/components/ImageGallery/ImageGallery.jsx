@@ -26,7 +26,11 @@ class ImageGallery extends Component {
 }
 
 ImageGallery.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id:PropTypes.number.isRequired
+    })
+  ).isRequired,
   onClick: PropTypes.func.isRequired
 };
 

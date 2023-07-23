@@ -18,7 +18,6 @@ class Searchbar extends Component {
       alert('Please enter your search query');
       return;
     }
-    console.log(this.state.imageName);
     
       this.props.onSubmit(this.state.imageName);
   

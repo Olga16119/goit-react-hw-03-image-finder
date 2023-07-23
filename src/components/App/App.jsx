@@ -32,7 +32,6 @@ export class App extends Component {
         this.state.page
       );
       const totalPage = Math.ceil(responce.totalHits / 12);
-      console.log(responce);
   
       if (!responce.hits.length) {
         this.setState({ loadMore: false });
@@ -67,7 +66,10 @@ export class App extends Component {
   };
 
   searchHandler = async imageName => {
-    this.setState({ imageName, images: [], loadMore: true, page: 1 });
+    if (this.state.imageName === imageName) {
+      return alert(`You have already made a query for this word`)
+    }
+    this.setState({ imageName: imageName.toLowerCase(), images: [], loadMore: true, page: 1 });
   };
 
   render() {
